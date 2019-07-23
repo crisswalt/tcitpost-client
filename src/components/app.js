@@ -75,7 +75,7 @@ class AppRoot extends Component
                 <CardFooter>
                   <Button onClick={() => this.props.removePost(post)}>Eliminar</Button>
                 </CardFooter>
-              </Card>
+            </Card> ))}
             </Page>
         ) : (
           <Page>
