@@ -13,7 +13,6 @@ class AppRoot extends Component
 {
 
   render() {
-    const { error, isLoading, posts, filter } = this.props;
     const _params = {
       id: 'cl.tcit.postfrontend',
       name: 'Tcit Post Frontend',
