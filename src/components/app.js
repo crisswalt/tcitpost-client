@@ -77,10 +77,10 @@ class App extends React.Component
 const mapStateToProps = state => {
   console.log('when map state to props', state);
   return {
-    error: state.posts.error,
-    isLoading: state.posts.isLoading,
-    posts: state.posts.items,
-    filter: state.filter,
+    error: state.postsReducer.error,
+    isLoading: state.postsReducer.isLoading,
+    posts: state.postsReducer.items,
+    filter: state.filterReducer,
   };
 };
 
