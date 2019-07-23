@@ -2,17 +2,10 @@ import React from 'react';
 import {
     Page,
     Navbar,
-    NavLeft,
-    NavTitle,
     NavRight,
     Link,
-    Toolbar,
-    Block,
     BlockTitle,
     List,
-    ListItem,
-    Row,
-    Col,
     Button,
     Progressbar,
     ListInput,
@@ -22,7 +15,7 @@ import {
     CardFooter
 } from 'framework7-react';
 
-export default () => (
+export default (props) => (
   <Page>
     <Navbar title="Posts - Tcit">
       <NavRight>

@@ -3,18 +3,13 @@ import {
   Page,
   Navbar,
   List,
-  ListItem,
   ListInput,
-  Toggle,
   BlockTitle,
-  Row,
   Button,
-  Range,
-  Block,
   Progressbar
 } from 'framework7-react';
 
-export default () => (
+export default (props) => (
   <Page>
     <Navbar title="Nuevo Post" backLink="Back" />
     {/*isLoading*/ this.props.isLoading && <Progressbar infinite></Progressbar>}

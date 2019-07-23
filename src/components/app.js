@@ -5,21 +5,6 @@ import {
   App,
   Statusbar,
   View,
-  Page,
-  Panel,
-  Navbar,
-  Button,
-  List,
-  ListInput,
-  BlockTitle,
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  Fab,
-  NavRight,
-  Link,
-  Progressbar
  } from 'framework7-react';
 
 import routes from '../routes';
