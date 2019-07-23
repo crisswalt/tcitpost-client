@@ -38,7 +38,7 @@ class AppRoot extends React.Component
     return (
       <App params={_params}>
         {/* StatusBar */}
-        <StatusBar />
+        
         {/*
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
