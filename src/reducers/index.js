@@ -13,6 +13,7 @@ function postsReducer(state = initialPosts, action)
     case actionsType.LIST_ALL_POSTS_REQUEST:         // request list all
     case actionsType.ADD_POST_REQUEST:               // request add post
     case actionsType.REMOVE_POST_REQUEST:            // require remove post
+      console.log('llega aquí...');
       return Object.assign({}, state, { isLoading: true });
     case actionsType.LIST_ALL_POSTS_SUCCESS: // success list all
       return Object.assign({}, state, { error: null, isLoading: false, items: action.posts });
