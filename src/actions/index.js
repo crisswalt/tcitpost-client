@@ -33,6 +33,7 @@ export const actions = {
     ;
   },
   addPost: (post) => (dispatch) => {
+    console.log('add post', post);
     console.log(dispatch);
     // send state request
     dispatch({ type: actionsType.ADD_POST_REQUEST });
