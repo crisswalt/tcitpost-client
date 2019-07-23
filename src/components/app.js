@@ -81,5 +81,11 @@ const mapStateToProps = state => ({
   filter: state.filter,
 });
 
+const mapDispatchToProps = {
+  listAllPosts,
+  addPost,
+  removePost,
+  filterPosts,
+};
 
-export default connect(mapStateToProps, actions)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
