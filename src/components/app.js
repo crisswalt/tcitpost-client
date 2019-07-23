@@ -1,24 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../actions';
-import {
-  App,
-  Panel,
-  View,
-  Statusbar,
-  Popup,
-  Page,
-  Navbar,
-  NavRight,
-  Link,
-  Block,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListInput,
-  ListButton,
-  BlockFooter
-} from 'framework7-react';
+import { Statusbar } from 'framework7-react';
 
 
 class AppRoot extends React.Component
@@ -38,7 +21,7 @@ class AppRoot extends React.Component
     return (
       <App params={_params}>
         {/* StatusBar */}
-        
+          <Statusbar />
         {/*
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
