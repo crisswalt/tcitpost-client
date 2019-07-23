@@ -13,14 +13,20 @@ import {
     ListItem,
     Row,
     Col,
-    Button
+    Button,
+    Progressbar,
+    ListInput,
+    Card,
+    CardHeader,
+    CardContent,
+    CardFooter
 } from 'framework7-react';
 
 export default () => (
   <Page>
     <Navbar title="Posts - Tcit">
       <NavRight>
-        {/* Error */  !! error && setTimeout(this.props.clearError, 3000) && <small styles="color:red">{error}</small> }
+        {/* Error */  !! this.props.error && setTimeout(this.props.clearError, 3000) && <small styles="color:red">{this.props.error}</small> }
         <Link icon="icon-bars" panelOpen="right"></Link>
       </NavRight>
     </Navbar>
