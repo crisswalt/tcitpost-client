@@ -26,7 +26,7 @@ export const actions = {
       .then( res => dispatch({ type: actionsType.LIST_ALL_POSTS_SUCCESS, posts: res.data }))
       .catch( error => {
         let msg = 'Ocurrió un error!';
-        dispatch({ type: actionsType.LIST_ALL_POSTS_FAILURE, error: error });
+        dispatch({ type: actionsType.LIST_ALL_POSTS_FAILURE, error: msg });
       })
     ;
   },
