@@ -39,52 +39,51 @@ class AppRoot extends React.Component
       <App params={_params}>
         {/* StatusBar */}
         <StatusBar />
-
-      </App>
-      {/*
-      <div className="App">
-        <label><input ref={node => myFilter = node } onChange={ e => {
-          e.preventDefault();
-          this.props.filterPosts(myFilter.value);
-        }}></input> Filter</label>
-        <h2>Listado de Posts</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.postsFiltered(posts, filter).map( post => (
-              <tr key={post.id}>
-                <td>{post.name}</td>
-                <td>{post.description}</td>
-                <td><button onClick={() => this.props.removePost(post)}>Eliminar</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <h2>Nuevo Post</h2>
-        <div>
-          <form onSubmit={ e => {
+        {/*
+        <div className="App">
+          <label><input ref={node => myFilter = node } onChange={ e => {
             e.preventDefault();
-            if (!name.value.trim()) {
-              return;
-            }
-            this.props.addPost({name: name.value, description: description.value});
-            name.value = description.value = '';
-          }}>
-            <input ref={ node => name = node } placeholder="Nombre"></input>
-            <input ref={ node => description = node } placeholder="Descripción"></input>
-            <button type="submit">
-              Agregar Post
-            </button>
-          </form>
+            this.props.filterPosts(myFilter.value);
+          }}></input> Filter</label>
+          <h2>Listado de Posts</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.postsFiltered(posts, filter).map( post => (
+                <tr key={post.id}>
+                  <td>{post.name}</td>
+                  <td>{post.description}</td>
+                  <td><button onClick={() => this.props.removePost(post)}>Eliminar</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <h2>Nuevo Post</h2>
+          <div>
+            <form onSubmit={ e => {
+              e.preventDefault();
+              if (!name.value.trim()) {
+                return;
+              }
+              this.props.addPost({name: name.value, description: description.value});
+              name.value = description.value = '';
+            }}>
+              <input ref={ node => name = node } placeholder="Nombre"></input>
+              <input ref={ node => description = node } placeholder="Descripción"></input>
+              <button type="submit">
+                Agregar Post
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-      */}
+        */}
+      </App>
     );
   }
 
