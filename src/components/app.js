@@ -1,15 +1,20 @@
-import React from 'react';
+import react, {Component} from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../actions';
-import { App, Statusbar } from 'framework7-react';
+import { App, Statusbar, View, Page } from 'framework7-react';
 
+class TestPage extends Component {
+    render() {
+        return (
+            <Page>
+                <h1>Hello World</h1>
+            </Page>
+        );
+    }
+}
 
-class AppRoot extends React.Component
+class AppRoot extends Component
 {
-  componentDidMount() {
-      this.props.listAllPosts();
-  }
-
   render() {
     const { error, isLoading, posts, filter } = this.props;
     const _params = {
@@ -19,9 +24,9 @@ class AppRoot extends React.Component
     };
     let name, description, myFilter;
     return (
-      <App params={_params}>
+      <App react={react} params={_params}>
         {/* StatusBar */}
-          <Statusbar />
+          <View url="/" main className="ios-edges"/>
         {/*
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
@@ -74,6 +79,13 @@ class AppRoot extends React.Component
     return posts.filter( post =>
       filter === '' || post.name.toLowerCase().includes(filter.toLowerCase())
     );
+  }
+
+  componentDidMount() {
+      this.props.listAllPosts();
+      this.$f7ready((f7) => {
+          f7.dialog.alert('Component mounted');
+      });
   }
 
 }
