@@ -6,7 +6,7 @@ import { actions } from '../actions';
 class App extends React.Component
 {
   componentDidMount() {
-      actions.listAllPosts();
+      listAllPosts();
   }
 
   render() {
@@ -23,7 +23,7 @@ class App extends React.Component
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
             e.preventDefault();
-            actions.filterPosts(myFilter.value);
+            filterPosts(myFilter.value);
           }}></input> Filter</label>
           <h2>Listado de Posts</h2>
           <table>
@@ -51,7 +51,7 @@ class App extends React.Component
               if (!name.value.trim()) {
                 return;
               }
-              actions.addPost({name: name.value, description: description.value});
+              addPost({name: name.value, description: description.value});
               name.value = description.value = '';
             }}>
               <input ref={ node => name = node } placeholder="Nombre"></input>
@@ -66,9 +66,9 @@ class App extends React.Component
     }
   }
 
-  postsFiltered(posts, filter) {
+  postsFiltered(posts = [], filter) {
     return posts.filter( post =>
-      filter == '' || post.name.toLowerCase().includes(filter.toLowerCase())
+      filter === '' || post.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
 
@@ -82,4 +82,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default App;
+export default connect(mapStateToProps, actions)(App);
