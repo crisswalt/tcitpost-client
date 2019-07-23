@@ -65,12 +65,12 @@ class AppRoot extends Component
             {/* Lista de Posts */}
             <BlockTitle>Listado de Posts</BlockTitle>
             {this.postsFiltered(this.props.posts, this.props.filter).map( post => (
-              <Card key={this.props.post.id}>
+              <Card key={post.id}>
                 <CardHeader>
-                  {this.props.post.name}
+                  {post.name}
                 </CardHeader>
                 <CardContent>
-                  <p>{this.props.post.description}</p>
+                  <p>{post.description}</p>
                 </CardContent>
                 <CardFooter>
                   <Button onClick={() => this.props.removePost(post)}>Eliminar</Button>
