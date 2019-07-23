@@ -16,7 +16,9 @@ export const actionsType = {
 
   FILTER_POSTS:           'FILTER_POSTS',
 
-  CLEAR_ERROR:            'CLEAR_ERROR'
+  CLEAR_ERROR:            'CLEAR_ERROR',
+
+  CHANGE_VIEW:            'CHANGE_VIEW'
 };
 
 export const actions = {
@@ -65,5 +67,6 @@ export const actions = {
     ;
   },
   filterPosts: (filter) => ({ type: actionsType.FILTER_POSTS, filter: filter }),
-  clearError: () => ({ type: actionsType.CLEAR_ERROR })
+  clearError: () => ({ type: actionsType.CLEAR_ERROR }),
+  changeView: () => ({ type: actionsType.CHANGE_VIEW })
 };

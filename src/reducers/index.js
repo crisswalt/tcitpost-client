@@ -44,9 +44,20 @@ function filterReducer(state = '', action)
   }
 }
 
+function changeViewReducer(state = 'list', action)
+{
+  switch (action.type) {
+    case actionsType.CHANGE_VIEW:
+      return state == 'list' ? 'form' : state;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   postsReducer,
   filterReducer,
+  changeViewReducer
 });
 
 export default rootReducer;
