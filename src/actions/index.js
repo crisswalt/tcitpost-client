@@ -37,8 +37,8 @@ export const actions = {
     service.addPost(post)
       .then( res => dispatch({ type: actionsType.ADD_POST_SUCCESS, post: res.data }) )
       .catch( error => {
-        dispatch({ type: actionsType.ADD_POST_FAILURE, error: error });
         console.log('error', error);
+        dispatch({ type: actionsType.ADD_POST_FAILURE, error: error });
       })
     ;
   },
