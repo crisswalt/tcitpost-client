@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Framework7 from 'framework7/framework7.esm.bundle';
 import Framework7React from 'framework7-react';
 import 'framework7/css/framework7.bundle.css';
+import './css/icons.css';
 
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
