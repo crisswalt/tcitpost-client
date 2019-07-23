@@ -1,5 +1,5 @@
 import React from 'react';
-import connect from 'redux';
+import { connect } from 'redux';
 
 import { actions } from '../actions';
 
