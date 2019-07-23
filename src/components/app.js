@@ -24,9 +24,50 @@ class AppRoot extends Component
     };
     let name, description, myFilter;
     return (
+      <App>
+
+        <Statusbar />
+
+        <Panel left cover themeDark>
+          <Navbar title="Left Panel" />
+          <Block>Left panel content</Block>
+        </Panel>
+
+        <Panel right reveal>
+          <Navbar title="Right Panel" />
+          <Block>Right panel content</Block>
+        </Panel>
+
+        <View main>
+          <Page>
+            <Navbar title="My App" />
+            <Block>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend, elit vitae scelerisque vulputate, tortor velit tempus dui, et luctus tellus justo nec velit. Duis scelerisque in tellus et pretium. Ut faucibus fringilla risus, ut dapibus nunc vehicula sit amet. Donec posuere nunc non fermentum commodo.</p>
+            </Block>
+            <Block>
+              <Segmented>
+                <Button panelOpen="left">Left Panel</Button>
+                <Button panelOpen="right">Right Panel</Button>
+              </Segmented>
+            </Block>
+            <List>
+              {
+                [1, 2, 3].map(n => (
+                  <ListItem
+                    key={n}
+                    title={`Item ${n}`}
+                  />
+                ))
+              }
+            </List>
+          </Page>
+        </View>
+
+        {/*
+      </App>
       <App react={React} params={_params}>
-        {/* StatusBar */}
-          <View url="/" main className="ios-edges"/>
+      <View url="/" main className="ios-edges"/>
+           StatusBar */}
         {/*
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
