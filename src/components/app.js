@@ -24,7 +24,7 @@ class AppRoot extends Component
 
         <Statusbar />
 
-        <View id="main-view" main url="/" />
+        <View id="main-view" main url="/" props={this.props} />
 
       </App>
     );
