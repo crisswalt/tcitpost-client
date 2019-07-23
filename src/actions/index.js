@@ -25,8 +25,8 @@ export const actions = {
     service.getPosts()
       .then( res => dispatch({ type: actionsType.LIST_ALL_POSTS_SUCCESS, posts: res.data }))
       .catch( error => {
+        let msg = 'Ocurrió un error!';
         dispatch({ type: actionsType.LIST_ALL_POSTS_FAILURE, error: error });
-        console.log('error', error);
       })
     ;
   },
@@ -37,8 +37,15 @@ export const actions = {
     service.addPost(post)
       .then( res => dispatch({ type: actionsType.ADD_POST_SUCCESS, post: res.data }) )
       .catch( error => {
-        console.log('error', error);
-        dispatch({ type: actionsType.ADD_POST_FAILURE, error: error });
+        let msg;
+        switch (error.response.status) {
+          case 422:
+            msg = 'No se puede crear el post. Puede que ya exista uno con el mismo nombre.';
+            break;
+          default:
+            msg = `Ocurrió un error (${error.response.status})`;
+        }
+        dispatch({ type: actionsType.ADD_POST_FAILURE, error: msg });
       })
     ;
   },
