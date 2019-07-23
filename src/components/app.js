@@ -39,7 +39,7 @@ class App extends React.Component
                 <tr key={post.id}>
                   <td>{post.name}</td>
                   <td>{post.description}</td>
-                  <td><button onClick={() => actions.removePost(post)}>Eliminar</button></td>
+                  <td><button onClick={() => this.props.removePost(post)}>Eliminar</button></td>
                 </tr>
               ))}
             </tbody>
@@ -74,15 +74,12 @@ class App extends React.Component
 
 }
 
-const mapStateToProps = state => {
-  console.log('when map state to props', state);
-  return {
-    error: state.postsReducer.error,
-    isLoading: state.postsReducer.isLoading,
-    posts: state.postsReducer.items,
-    filter: state.filterReducer,
-  };
-};
+const mapStateToProps = state => ({
+  error: state.postsReducer.error,
+  isLoading: state.postsReducer.isLoading,
+  posts: state.postsReducer.items,
+  filter: state.filterReducer,
+});
 
 const mapDispatchToProps = {
   listAllPosts: actions.listAllPosts,
