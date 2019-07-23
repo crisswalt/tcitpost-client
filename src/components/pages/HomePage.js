@@ -25,7 +25,7 @@ export default () => (
       </NavRight>
     </Navbar>
 
-    {/*isLoading*/ isLoading && <Progressbar infinite></Progressbar>}
+    {/*isLoading*/ this.props.isLoading && <Progressbar infinite></Progressbar>}
 
     {/* Filtro */}
     <List inlineLabels noHairlinesMd>
@@ -42,13 +42,13 @@ export default () => (
 
     {/* Lista de Posts */}
     <BlockTitle>Listado de Posts</BlockTitle>
-    {this.postsFiltered(posts, filter).map( post => (
-      <Card key={post.id}>
+    {this.postsFiltered(this.props.posts, this.props.filter).map( post => (
+      <Card key={this.props.post.id}>
         <CardHeader>
-          {post.name}
+          {this.props.post.name}
         </CardHeader>
         <CardContent>
-          <p>{post.description}</p>
+          <p>{this.props.post.description}</p>
         </CardContent>
         <CardFooter>
           <Button onClick={() => this.props.removePost(post)}>Eliminar</Button>
