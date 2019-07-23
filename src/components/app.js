@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../actions';
-import { App, Statusbar, View, Page } from 'framework7-react';
+import {
+  App,
+  Statusbar,
+  View,
+  Page,
+  Panel,
+  Navbar,
+  Block,
+  Segmented,
+  Button,
+  List,
+  ListItem
+ } from 'framework7-react';
 
-class TestPage extends Component {
-    render() {
-        return (
-            <Page>
-                <h1>Hello World</h1>
-            </Page>
-        );
-    }
-}
 
 class AppRoot extends Component
 {
