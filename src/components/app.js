@@ -1,43 +1,20 @@
 import React from 'react';
+import connect from 'redux';
 
-import service from '../services';
+import { actions } from '../actions';
 
 class App extends React.Component
 {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      posts: [],
-      filter: ''
-    };
-  }
-
   componentDidMount() {
-    service.getPosts()
-      .then( (res) => {
-        this.setState({
-          isLoaded: true,
-          posts: res.data
-        });
-      })
-      .catch( (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-        console.log('error', error);
-      } )
-    ;
+      actions.listAllPosts();
   }
 
   render() {
-    const { error, isLoaded, posts, filter } = this.state;
+    const { error, isLoading, posts, filter } = this.props;
 
     if (error) {
       return <div>Error: { error }</div>;
-    } else if (!isLoaded) {
+    } else if (isLoading) {
       return <div>Loading...</div>;
     } else {
       let name, description, myFilter;
@@ -46,10 +23,7 @@ class App extends React.Component
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
             e.preventDefault();
-            this.setState({
-              filter: myFilter.value
-            });
-
+            actions.filterPosts(myFilter.value);
           }}></input> Filter</label>
           <h2>Listado de Posts</h2>
           <table>
@@ -65,7 +39,7 @@ class App extends React.Component
                 <tr key={post.id}>
                   <td>{post.name}</td>
                   <td>{post.description}</td>
-                  <td><button onClick={() => this.delete(post)}>Eliminar</button></td>
+                  <td><button onClick={() => actions.removePost(post)}>Eliminar</button></td>
                 </tr>
               ))}
             </tbody>
@@ -77,7 +51,7 @@ class App extends React.Component
               if (!name.value.trim()) {
                 return;
               }
-              this.add({name: name.value, description: description.value});
+              actions.addPost({name: name.value, description: description.value});
               name.value = description.value = '';
             }}>
               <input ref={ node => name = node } placeholder="Nombre"></input>
@@ -98,34 +72,14 @@ class App extends React.Component
     );
   }
 
-  delete(post) {
-    const { posts } = this.state;
-
-    service.removePost(post)
-      .then( (res) => {
-        this.setState({
-          posts: posts.filter( (post) => post.id !== res.data.id )
-        });
-      })
-    ;
-  }
-
-  add(post) {
-    const { posts } = this.state;
-
-    service.addPost(post)
-      .then( res => {
-        this.setState({
-          posts: [
-            ...posts,
-            res.data
-          ]
-        }
-        );
-      })
-    ;
-  }
-
 }
+
+const mapStateToProps = state => ({
+  error: state.posts.error,
+  isLoading: state.posts.isLoading,
+  posts: state.posts.items,
+  filter: state.filter,
+});
+
 
 export default App;
