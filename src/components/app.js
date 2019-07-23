@@ -127,9 +127,6 @@ class AppRoot extends Component
 
   componentDidMount() {
       this.props.listAllPosts();
-      this.$f7ready((f7) => {
-          f7.dialog.alert('Component mounted');
-      });
   }
 
 }
