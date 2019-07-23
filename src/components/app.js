@@ -1,4 +1,4 @@
-import react, {Component} from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../actions';
 import { App, Statusbar, View, Page } from 'framework7-react';
@@ -24,7 +24,7 @@ class AppRoot extends Component
     };
     let name, description, myFilter;
     return (
-      <App react={react} params={_params}>
+      <App react={React} params={_params}>
         {/* StatusBar */}
           <View url="/" main className="ios-edges"/>
         {/*
