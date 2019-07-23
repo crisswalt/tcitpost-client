@@ -43,7 +43,7 @@ class AppRoot extends Component
             <Navbar title="Posts - Tcit">
               <NavRight>
                 {/* Error */  !! this.props.error && setTimeout(this.props.clearError, 3000) && <small styles="color:red">{this.props.error}</small> }
-                <Link icon="icon-plus" onClick={ e => this.props.changeView() }></Link>
+                <Link icon="icon-plus" onClick={ e => this.props.changeView() }>Nuevo</Link>
               </NavRight>
             </Navbar>
 
