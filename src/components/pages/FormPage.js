@@ -10,14 +10,15 @@ import {
   Row,
   Button,
   Range,
-  Block
+  Block,
+  Progressbar
 } from 'framework7-react';
 
 export default () => (
   <Page>
     <Navbar title="Nuevo Post" backLink="Back" />
-    {/*isLoading*/ isLoading && <Progressbar infinite></Progressbar>}
-    
+    {/*isLoading*/ this.props.isLoading && <Progressbar infinite></Progressbar>}
+
     <BlockTitle>Post</BlockTitle>
     <List form padding onSubmit={ e => {
       e.preventDefault();
