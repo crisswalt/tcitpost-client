@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../actions';
-import { Statusbar } from 'framework7-react';
+import { App, Statusbar } from 'framework7-react';
 
 
 class AppRoot extends React.Component
