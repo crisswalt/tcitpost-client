@@ -74,12 +74,15 @@ class App extends React.Component
 
 }
 
-const mapStateToProps = state => ({
-  error: state.posts.error,
-  isLoading: state.posts.isLoading,
-  posts: state.posts.items,
-  filter: state.filter,
-});
+const mapStateToProps = state => {
+  console.log('when map state to props', state);
+  return {
+    error: state.posts.error,
+    isLoading: state.posts.isLoading,
+    posts: state.posts.items,
+    filter: state.filter,
+  };
+};
 
 const mapDispatchToProps = {
   listAllPosts: actions.listAllPosts,
