@@ -92,6 +92,7 @@ class AppRoot extends Component
 
                   this.props.addPost({name: name.value, description: description.value});
                   name.value = description.value = '';
+                  return false;
                 }}>
                   <ListInput
                     outline
