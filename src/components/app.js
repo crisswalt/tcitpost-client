@@ -8,16 +8,24 @@ import {
   Page,
   Panel,
   Navbar,
-  Block,
-  Segmented,
   Button,
   List,
-  ListItem
+  ListInput,
+  BlockTitle,
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  Fab,
+  NavRight,
+  Link,
+  Progressbar
  } from 'framework7-react';
 
 
 class AppRoot extends Component
 {
+
   render() {
     const { error, isLoading, posts, filter } = this.props;
     const _params = {
@@ -25,96 +33,87 @@ class AppRoot extends Component
       name: 'Tcit Post Frontend',
       theme: 'auto'
     };
-    let name, description, myFilter;
     return (
-      <App>
+      <App params={_params}>
 
         <Statusbar />
 
-        <Panel left cover themeDark>
-          <Navbar title="Left Panel" />
-          <Block>Left panel content</Block>
-        </Panel>
-
-        <Panel right reveal>
-          <Navbar title="Right Panel" />
-          <Block>Right panel content</Block>
-        </Panel>
-
         <View main>
           <Page>
-            <Navbar title="My App" />
-            <Block>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend, elit vitae scelerisque vulputate, tortor velit tempus dui, et luctus tellus justo nec velit. Duis scelerisque in tellus et pretium. Ut faucibus fringilla risus, ut dapibus nunc vehicula sit amet. Donec posuere nunc non fermentum commodo.</p>
-            </Block>
-            <Block>
-              <Segmented>
-                <Button panelOpen="left">Left Panel</Button>
-                <Button panelOpen="right">Right Panel</Button>
-              </Segmented>
-            </Block>
-            <List>
-              {
-                [1, 2, 3].map(n => (
-                  <ListItem
-                    key={n}
-                    title={`Item ${n}`}
-                  />
-                ))
-              }
+            <Navbar title="Posts - Tcit">
+              {/* Error */  !! error && setTimeout(this.props.clearError, 3000) && <NavRight><small styles="color:red">{error}</small></NavRight> }
+            </Navbar>
+
+            {/*isLoading*/ isLoading && <Progressbar infinite></Progressbar>}
+
+            {/* Filtro */}
+            <List inlineLabels noHairlinesMd>
+              <ListInput
+                label="Filtro"
+                type="text"
+                placeholder="buscar..."
+                onChange={ e => this.props.filterPosts(e.target.value) }
+                onInputClear={ e => this.props.filterPosts('') }
+                clearButton
+              >
+              </ListInput>
             </List>
+
+            {/* Lista de Posts */}
+            <BlockTitle>Listado de Posts</BlockTitle>
+            {this.postsFiltered(posts, filter).map( post => (
+              <Card key={post.id}>
+                <CardHeader>
+                  {post.name}
+                </CardHeader>
+                <CardContent>
+                  <p>{post.description}</p>
+                </CardContent>
+                <CardFooter>
+                  <Button onClick={() => this.props.removePost(post)}>Eliminar</Button>
+                </CardFooter>
+              </Card>
+            ))}
+
+            {/* Boton para desplegar Formulario new Post */}
+            <Fab position="right-bottom" slot="fixed" panelOpen="left">
+              <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left" ></Link>
+            </Fab>
+
+            <Panel left cover themeDark>
+              <Page padding>
+                <Navbar title="Nuevo Post" />
+
+                <BlockTitle>Post</BlockTitle>
+                <List form padding onSubmit={ e => {
+                  e.preventDefault();
+                  let name = e.target.querySelector('input');
+                  let description = e.target.querySelector('textarea');
+
+                  this.props.addPost({name: name.value, description: description.value});
+                  name.value = description.value = '';
+                }}>
+                  <ListInput
+                    outline
+                    label="Nombre"
+                    type="text"
+                    placeholder="nombre único"
+                    clearButton
+                  />
+                  <ListInput
+                    outline
+                    label="Descripción"
+                    type="textarea"
+                    placeholder="Detalle Post"
+                    clearButton
+                  />
+                  <Button raised fill type="submit">Enviar</Button>
+                </List>
+              </Page>
+            </Panel>
+
           </Page>
         </View>
-
-        {/*
-      </App>
-      <App react={React} params={_params}>
-      <View url="/" main className="ios-edges"/>
-           StatusBar */}
-        {/*
-        <div className="App">
-          <label><input ref={node => myFilter = node } onChange={ e => {
-            e.preventDefault();
-            this.props.filterPosts(myFilter.value);
-          }}></input> Filter</label>
-          <h2>Listado de Posts</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.postsFiltered(posts, filter).map( post => (
-                <tr key={post.id}>
-                  <td>{post.name}</td>
-                  <td>{post.description}</td>
-                  <td><button onClick={() => this.props.removePost(post)}>Eliminar</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <h2>Nuevo Post</h2>
-          <div>
-            <form onSubmit={ e => {
-              e.preventDefault();
-              if (!name.value.trim()) {
-                return;
-              }
-              this.props.addPost({name: name.value, description: description.value});
-              name.value = description.value = '';
-            }}>
-              <input ref={ node => name = node } placeholder="Nombre"></input>
-              <input ref={ node => description = node } placeholder="Descripción"></input>
-              <button type="submit">
-                Agregar Post
-              </button>
-            </form>
-          </div>
-        </div>
-        */}
       </App>
     );
   }
@@ -143,6 +142,7 @@ const mapDispatchToProps = {
   addPost: actions.addPost,
   removePost: actions.removePost,
   filterPosts: actions.filterPosts,
+  clearError: actions.clearError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRoot);

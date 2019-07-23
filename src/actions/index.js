@@ -14,7 +14,9 @@ export const actionsType = {
   REMOVE_POST_SUCCESS:    'REMOVE_POST_SUCCESS',
   REMOVE_POST_FAILURE:    'REMOVE_POST_FAILURE',
 
-  FILTER_POSTS:           'FILTER_POSTS'
+  FILTER_POSTS:           'FILTER_POSTS',
+
+  CLEAR_ERROR:            'CLEAR_ERROR'
 };
 
 export const actions = {
@@ -57,9 +59,9 @@ export const actions = {
       .then( res => dispatch({ type: actionsType.REMOVE_POST_SUCCESS, post: res.data }) )
       .catch( error => {
         dispatch({ type: actionsType.REMOVE_POST_FAILURE, error: error });
-        console.log('error', error);
       })
     ;
   },
-  filterPosts: (filter) => ({ type: actionsType.FILTER_POSTS, filter: filter })
+  filterPosts: (filter) => ({ type: actionsType.FILTER_POSTS, filter: filter }),
+  clearError: () => ({ type: actionsType.CLEAR_ERROR })
 };
