@@ -6,7 +6,7 @@ import { actions } from '../actions';
 class App extends React.Component
 {
   componentDidMount() {
-      listAllPosts();
+      this.props.listAllPosts();
   }
 
   render() {
@@ -23,7 +23,7 @@ class App extends React.Component
         <div className="App">
           <label><input ref={node => myFilter = node } onChange={ e => {
             e.preventDefault();
-            filterPosts(myFilter.value);
+            this.props.filterPosts(myFilter.value);
           }}></input> Filter</label>
           <h2>Listado de Posts</h2>
           <table>
@@ -51,7 +51,7 @@ class App extends React.Component
               if (!name.value.trim()) {
                 return;
               }
-              addPost({name: name.value, description: description.value});
+              this.props.addPost({name: name.value, description: description.value});
               name.value = description.value = '';
             }}>
               <input ref={ node => name = node } placeholder="Nombre"></input>
